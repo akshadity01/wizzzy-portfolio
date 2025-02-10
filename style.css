@@ -75,7 +75,7 @@ nav ul li:hover{
 .image-cont img{
     height: 100%;
     width: 100%;
-    background-position: cover;
+    object-fit: cover;
 }
 
 .text-cont{
