@@ -160,6 +160,7 @@ nav ul li a:hover::after {
     align-items: center;
     justify-content: space-around;
     margin-right: 45%;
+    flex-direction: column;
 }
 
 .live iframe{
