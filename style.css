@@ -180,7 +180,7 @@ h1, h2, h3 {
 }
 
 h1, h2 {
-    text-shadow: 0 0 3px rgba(255, 111, 97, 0.8), 0 0 10px rgba(255, 111, 97, 0.6);
+    text-shadow: 0 0 7px rgba(255, 111, 97, 0.8), 0 0 10px rgba(255, 111, 97, 0.6);
 }
 
 @keyframes gradientBG {
