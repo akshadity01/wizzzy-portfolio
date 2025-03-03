@@ -1,19 +1,43 @@
-setInterval(() => {
-    fetch(`https://www.youtube.com/channel/UC7GOzVmO24_B8M0izj2-EsQ/live`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return response.url;
-        })
-        .then(url => {
-            if (url.includes("watch?v=")) {
-                document.getElementById("videoFrame").src = url.replace("watch?v=", "embed/");
-            } else {
-                document.getElementById("videoFrame").src = "https://www.youtube.com/embed/W78hJ9XDcLc?si=VTwuWfiyEoQFTxf6";
-            }
-        })
-        .catch(error => {
-            console.error("Error fetching live stream URL:", error);
-        });
-}, 90000); // Check every 60 seconds
+const videoCont = document.querySelector(".videoCont");
+const leftBtn = document.querySelector(".left");
+const rightBtn = document.querySelector(".right");
+const video = document.querySelectorAll("video");
+
+let currentIndex = 0;
+
+function updateSlider() {
+    const offset = -currentIndex * 100;
+    videoCont.style.transform = `translateX(${offset}%)`;
+}
+
+rightBtn.addEventListener("click", () => {
+    if (currentIndex < video.length - 1) {
+        currentIndex++;
+    } else {
+        currentIndex = 0; // Loop back to the first video
+    }
+    updateSlider();
+});
+
+leftBtn.addEventListener("click", () => {
+    if (currentIndex > 0) {
+        currentIndex--;
+    } else {
+        currentIndex = videos.length - 1; // Loop back to the last video
+    }
+    updateSlider();
+});
+
+// Play video on hover
+video.forEach(video => {
+    video.addEventListener("mouseenter", () => video.play());
+    video.addEventListener("mouseleave", () => {
+        video.pause();
+        video.currentTime = 0;
+    });
+});
+
+// Initial styling for smooth transitions
+videoCont.style.display = "flex";
+videoCont.style.transition = "transform 0.5s ease-in-out";
+video.forEach(video => video.style.width = "100%");
